@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Wudhu, Sholat & Dzikir - Cloud Sunnah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Include hijri-date library -->
+    <script src="https://cdn.jsdelivr.net/npm/hijri-date@0.2.1/dist/hijri-date.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a936f;
+            --secondary-color: #88d498;
+            --accent-color: #f3e9d2;
+            --dark-color: #114b5f;
+            --light-color: #f9f9f9;
+            --text-color: #333;
+            --gold-color: #d4af37;
+            --font-size: 16px;
+            --arabic-font-size: 20px;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            
+            /* Calendar Colors */
+            --color-sunnah: #4CAF50; /* Hijau */
+            --color-wajib: #F44336; /* Merah */
+            --color-larangan: #795548; /* Cokelat */
+            --color-normal: #2196F3; /* Biru untuk hari biasa */
+            --color-today: #BBDEFB; /* Biru muda untuk hari ini */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f9f9 0%, #e6f5f5 100%);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding-bottom: 60px;
+            transition: var(--transition);
+            font-size: var(--font-size);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo i {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+        .logo h1 {
+            font-size: 1.4rem;
+        }
+        .nav-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: white;
+            color: var(--primary-color);
+        }
+        .settings-container {
+            position: relative;
+        }
+        .settings-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .settings-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+        }
+        /* Settings Menu - Diperbaiki untuk responsivitas dan posisi tengah */
+        .settings-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .settings-overlay.active {
+            display: flex;
+        }
+        .settings-menu {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+        .settings-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        .settings-menu h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        .setting-item {
+            margin-bottom: 20px;
+        }
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .font-size-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .font-size-control button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .font-size-control button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        .font-size-control span {
+            min-width: 40px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: var(--transition);
+            border-radius: 34px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        /* Page Styles */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        .hero h2 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto 15px;
+        }
+        /* Steps Styles */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .step-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 35px;
+            height: 35px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .step-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        .step-card p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .step-details {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 12px;
+            display: none;
+        }
+        .step-card.active .step-details {
+            display: block;
+        }
+        .arabic-text {
+            font-size: var(--arabic-font-size);
+            text-align: right;
+            direction: rtl;
+            margin: 12px 0;
+            line-height: 2.5;
+        }
+        .latin-text {
+            font-size: var(--font-size);
+            font-style: italic;
+            margin: 8px 0;
+        }
+        .translation {
+            margin: 12px 0;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .close-details {
+            text-align: center;
+            margin-top: 12px;
+        }
+        .close-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .close-btn:hover {
+            background: var(--dark-color);
+        }
+        /* Jadwal Sholat Styles */
+        .prayer-times {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .location-info {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .location-info i {
+            margin-right: 5px;
+        }
+        .prayer-times-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .prayer-time-item {
+            background: var(--accent-color);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .prayer-time-item .name {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .prayer-time-item .time {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        .get-location-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        .get-location-btn:hover {
+            background: var(--dark-color);
+        }
+        .get-location-btn:disabled {
+             background: #cccccc;
+             cursor: not-allowed;
+        }
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: var(--dark-color);
+            color: white;
+            margin-top: 40px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-container {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            .prayer-times-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            .hero {
+                padding: 30px 15px;
+            }
+            .steps-container {
+                gap: 15px;
+            }
+            .prayer-times-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+            }
+        }
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        /* Social Media */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .facebook {
+            background: #3b5998;
+        }
+        .twitter {
+            background: #1da1f2;
+        }
+        .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        .tiktok {
+            background: linear-gradient(45deg, #000000, #00f2ea, #ff0050);
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .calendar-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-nav button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .calendar-nav button:hover {
+            background: var(--dark-color);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px 5px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .calendar-date {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-date:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-date.other-month {
+            color: #ccc;
+        }
+
+        .calendar-date.today {
+            background-color: var(--color-today);
+            font-weight: bold;
+            border: 2px solid var(--color-normal);
+        }
+
+        .calendar-date.sunnah {
+            background-color: var(--color-sunnah);
+            color: white;
+        }
+
+        .calendar-date.wajib {
+            background-color: var(--color-wajib);
+            color: white;
+        }
+
+        .calendar-date.larangan {
+            background-color: var(--color-larangan);
+            color: white;
+        }
+
+        .calendar-date .hijri-date {
+            font-size: 0.7em;
+            opacity: 0.8;
+        }
+
+        .calendar-date .gregorian-date {
+            font-size: 1em;
+        }
+
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .popup-title {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .popup-info {
+            margin-bottom: 15px;
+        }
+
+        .popup-info p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Calendar */
+        @media (max-width: 768px) {
+            .calendar-grid {
+                gap: 3px;
+            }
+            
+            .calendar-date {
+                padding: 3px;
+            }
+            
+            .calendar-date .hijri-date {
+                font-size: 0.6em;
+            }
+            
+            .calendar-date .gregorian-date {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .calendar-nav {
+                justify-content: center;
+            }
+            
+            .calendar-grid {
+                gap: 2px;
+            }
+            
+            .calendar-day-header {
+                padding: 5px 2px;
+                font-size: 0.8em;
+            }
+            
+            .calendar-date {
+                padding: 2px;
+            }
+            
+            .calendar-date .hijri-date {
+                font-size: 0.5em;
+            }
+            
+            .calendar-date .gregorian-date {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-cloud-sun"></i>
+                <h1>CLOUD SUNNAH</h1>
+            </div>
+            <div class="nav-container">
+                <button class="nav-btn active" data-page="wudhu">Wudhu</button>
+                <button class="nav-btn" data-page="sholat">Sholat</button>
+                <button class="nav-btn" data-page="dzikir">Dzikir</button>
+                <button class="nav-btn" data-page="jadwal">Jadwal</button>
+                <button class="nav-btn" data-page="kalender">Kalender</button>
+            </div>
+            <div class="settings-container">
+                <button class="settings-toggle" id="settingsToggle">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Settings Overlay -->
+    <div class="settings-overlay" id="settingsOverlay">
+        <div class="settings-menu">
+            <button class="settings-close" id="settingsClose">&times;</button>
+            <h3>Pengaturan Tampilan</h3>
+            <div class="setting-item">
+                <label for="fontSize">Ukuran Teks (Latin & Arab)</label>
+                <div class="description">Mengubah ukuran teks untuk seluruh konten</div>
+                <div class="font-size-control">
+                    <button id="decreaseFont">A-</button>
+                    <span id="fontSizeValue">16</span>
+                    <button id="increaseFont">A+</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label for="arabicFontSize">Ukuran Teks Arab</label>
+                <div class="description">Mengubah ukuran teks Arab khusus</div>
+                <div class="font-size-control">
+                    <button id="decreaseArabicFont">A-</button>
+                    <span id="arabicFontSizeValue">20</span>
+                    <button id="increaseArabicFont">A+</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label for="latinToggle">Tampilkan Teks Latin</label>
+                <div class="description">Menampilkan atau menyembunyikan teks latin</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="latinToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Wudhu Page -->
+        <div id="wudhu-page" class="page active">
+            <section class="hero">
+                <h2>Tata Cara Wudhu Sesuai Sunnah</h2>
+                <p>Lengkap dengan dalil dari Al-Qur'an dan Hadits yang Shahih</p>
+            </section>
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step-card" data-step="1">
+                    <div class="step-number">1</div>
+                    <h3>Niat di dalam Hati</h3>
+                    <p>Niat adalah amalan hati, tidak untuk diucapkan. Niat berwudhu untuk menghilangkan hadats kecil demi melaksanakan sholat atau ibadah lainnya.</p>
+                    <div class="step-details">
+                        <div class="arabic-text">إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ</div>
+                        <div class="latin-text">Innama al-a'malu binniyat</div>
+                        <p class="translation">"Sesungguhnya setiap amalan tergantung pada niatnya." (HR. Bukhari no. 1 dan Muslim no. 1907)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card" data-step="2">
+                    <div class="step-number">2</div>
+                    <h3>Mengucap "Bismillah"</h3>
+                    <p>Sebelum memulai wudhu.</p>
+                    <div class="step-details">
+                        <div class="arabic-text">لاَ وُضُوءَ لِمَنْ لَمْ يَذْكُرِ اسْمَ اللَّهِ عَلَيْهِ</div>
+                        <div class="latin-text">Laa wudhu-a liman lam yadzkuris mallahi 'alaih</div>
+                        <p class="translation">"Tidak ada wudhu (yang sempurna) bagi yang tidak menyebut nama Allah." (HR. Tirmidzi no. 25, dishahihkan oleh Syaikh Al-Albani)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card" data-step="3">
+                    <div class="step-number">3</div>
+                    <h3>Membasuh Kedua Telapak Tangan (3 kali)</h3>
+                    <p>Mencuci kedua telapak tangan hingga pergelangan sebanyak tiga kali.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dari hadits Utsman bin Affan, beliau meminta dibawakan air wudhu, lalu beliau "menuangkan air pada kedua telapak tangannya tiga kali, lalu beliau mencucinya." (HR. Bukhari no. 159 dan Muslim no. 226)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card" data-step="4">
+                    <div class="step-number">4</div>
+                    <h3>Berkumur dan Memasukkan Air ke Hidung (3 kali)</h3>
+                    <p>Mengambil air dengan satu cidukan telapak tangan kanan, sebagian untuk berkumur (madhmadhah) dan sebagian lagi untuk dihirup ke hidung (istinsyaq), lalu mengeluarkannya (istintsar). Dilakukan sebanyak tiga kali.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dalam lanjutan hadits Utsman, "Kemudian beliau berkumur, memasukkan air ke hidung, dan mengeluarkannya." (HR. Bukhari no. 159 dan Muslim no. 226)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="step-card" data-step="5">
+                    <div class="step-number">5</div>
+                    <h3>Membasuh Seluruh Wajah (3 kali)</h3>
+                    <p>Membasuh wajah secara merata, dari batas tumbuhnya rambut di dahi hingga ke bawah dagu, dan dari telinga kanan hingga telinga kiri. Bagi laki-laki, disunnahkan untuk menyela-nyela jenggot yang tebal.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dalam lanjutan hadits Utsman, "Lalu beliau membasuh wajahnya tiga kali." (HR. Bukhari no. 159 dan Muslim no. 226)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 6 -->
+                <div class="step-card" data-step="6">
+                    <div class="step-number">6</div>
+                    <h3>Membasuh Kedua Tangan Hingga Siku (3 kali)</h3>
+                    <p>Membasuh tangan kanan terlebih dahulu sampai melewati siku, kemudian tangan kiri dengan cara yang sama. Masing-masing tiga kali.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dalam lanjutan hadits Utsman, "Kemudian membasuh tangan kanannya sampai siku tiga kali, lalu tangan kirinya seperti itu juga." (HR. Bukhari no. 159 dan Muslim no. 226)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 7 -->
+                <div class="step-card" data-step="7">
+                    <div class="step-number">7</div>
+                    <h3>Mengusap Seluruh Kepala dan Telinga (1 kali)</h3>
+                    <p>Mengusap kepala cukup satu kali. Caranya adalah dengan membasahi kedua telapak tangan, lalu mengusapkannya dari depan kepala (tempat tumbuh rambut) ke arah tengkuk, lalu mengembalikannya lagi ke depan. Langsung dilanjutkan dengan membersihkan kedua telinga (bagian dalam dengan telunjuk, bagian luar dengan ibu jari) dengan sisa air yang ada di tangan.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dalam lanjutan hadits Utsman, "Kemudian beliau mengusap kepalanya." (HR. Bukhari no. 159 dan Muslim no. 226). Dan dalam riwayat Abdullah bin Zaid, beliau "mengusap kepalanya dengan kedua tangannya, dari depan ke belakang dan dari belakang ke depan." (HR. Bukhari no. 185 dan Muslim no. 235)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 8 -->
+                <div class="step-card" data-step="8">
+                    <div class="step-number">8</div>
+                    <h3>Mencuci Kedua Kaki Hingga Mata Kaki (3 kali)</h3>
+                    <p>Mencuci kaki kanan terlebih dahulu sampai melewati kedua mata kaki, sambil menyela-nyela jari-jari kaki. Kemudian dilanjutkan dengan kaki kiri dengan cara yang sama. Masing-masing tiga kali.</p>
+                    <div class="step-details">
+                        <p class="translation">Dalil: Dalam lanjutan hadits Utsman, "Kemudian beliau membasuh kaki kanannya sampai kedua mata kaki tiga kali, kemudian kaki kirinya seperti itu juga." (HR. Bukhari no. 159 dan Muslim no. 226)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 9 -->
+                <div class="step-card" data-step="9">
+                    <div class="step-number">9</div>
+                    <h3>Tertib (Berurutan)</h3>
+                    <p>Melakukan semua rukun wudhu secara berurutan sesuai yang telah dijelaskan.</p>
+                    <div class="step-details">
+                        <p class="translation">Tidak ada dalil khusus karena ini adalah kesimpulan dari tata cara wudhu yang dicontohkan Nabi Muhammad ﷺ.</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 10 -->
+                <div class="step-card" data-step="10">
+                    <div class="step-number">10</div>
+                    <h3>Doa Setelah Wudhu</h3>
+                    <p>Setelah selesai, dianjurkan membaca doa:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+                        <div class="latin-text">Asyhadu an laa ilaaha illallah wahdahu laa syariika lah, wa asyhadu anna muhammadan 'abduhu wa rasuluh.</div>
+                        <p class="translation">(Aku bersaksi bahwa tidak ada sesembahan yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya).</p>
+                        <p class="translation">Dalil dan Faedahnya: Rasulullah ﷺ bersabda, "Tidaklah seorang di antara kalian berwudhu dan menyempurnakan wudhunya, kemudian mengucapkan (doa di atas), kecuali akan dibukakan untuknya delapan pintu surga, ia dapat masuk dari pintu mana saja yang ia kehendaki." (HR. Muslim no. 234)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sholat Page -->
+        <div id="sholat-page" class="page">
+            <section class="hero">
+                <h2>Tata Cara Sholat Sesuai Sunnah</h2>
+                <p>Lengkap dengan dalil dari Al-Qur'an dan Hadits yang Shahih</p>
+            </section>
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step-card" data-step="1">
+                    <div class="step-number">1</div>
+                    <h3>Berdiri Menghadap Kiblat</h3>
+                    <p>Berdiri tegak menghadap Ka'bah dengan niat di dalam hati untuk melaksanakan sholat.</p>
+                    <div class="step-details">
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card" data-step="2">
+                    <div class="step-number">2</div>
+                    <h3>Takbiratul Ihram</h3>
+                    <p>Mengangkat kedua tangan sejajar dengan bahu atau telinga, sambil mengucapkan:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">اللهُ أَكْبَرُ</div>
+                        <div class="latin-text">Allahu Akbar</div>
+                        <p class="translation">Pandangan mata ke tempat sujud. Setelah itu, meletakkan tangan kanan di atas punggung telapak tangan kiri, pergelangan tangan, atau lengan kiri di atas dada.</p>
+                        <p class="translation">Dalil: Dari Wail bin Hujr, beliau melihat Nabi ﷺ "ketika memulai sholat, beliau bertakbir seraya mengangkat kedua tangannya." (HR. Muslim no. 401). Dan beliau "meletakkan tangan kanannya di atas tangan kirinya (di dada)." (HR. Ibnu Khuzaimah no. 479, dishahihkan Syaikh Al-Albani).</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card" data-step="3">
+                    <div class="step-number">3</div>
+                    <h3>Membaca Doa Iftitah</h3>
+                    <p>Membaca doa iftitah yang diajarkan Rasulullah ﷺ</p>
+                    <div class="step-details">
+                        <p class="translation">Pilihan 1:</p>
+                        <div class="arabic-text">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ</div>
+                        <div class="latin-text">Allahumma baa-id bainii wa baina khathaayaaya kamaa baa-adta bainal masyriqi wal maghrib, Allahumma naqqinii minal khathaayaa kamaa yunaqqas tsaubul abyadhu minad danasi, Allahummaghsil khathaayaaya bil maa-i wats tsalji wal barad.</div>
+                        <p class="translation">(Ya Allah, jauhkanlah antara aku dan kesalahan-kesalahanku sebagaimana Engkau menjauhkan antara timur dan barat. Ya Allah, bersihkanlah aku dari kesalahan-kesalahanku sebagaimana pakaian putih dibersihkan dari kotoran. Ya Allah, cucilah kesalahan-kesalahanku dengan air, salju, dan embun.) (HR. Bukhari no. 744 dan Muslim no. 598)</p>
+                        <p class="translation">Pilihan 2:</p>
+                        <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلاَ إِلَهَ غَيْرُكَ</div>
+                        <div class="latin-text">Subhanakallahumma wa bihamdika, wa tabaarakasmuka, wa ta-aalaa jadduka, wa laa ilaaha ghairuk.</div>
+                        <p class="translation">(Maha Suci Engkau, ya Allah, dan segala puji bagi-Mu, Maha Berkah nama-Mu, Maha Tinggi keagungan-Mu, dan tidak ada sesembahan yang berhak disembah selain Engkau.) (HR. Abu Dawud no. 776 dan At-Tirmidzi no. 242, dishahihkan oleh Syaikh Al-Albani)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card" data-step="4">
+                    <div class="step-number">4</div>
+                    <h3>Membaca Ta'awudz dan Al-Fatihah</h3>
+                    <p>Membaca A'udzu billahi minasy syaithaanir rajiim (Aku berlindung kepada Allah dari godaan setan yang terkutuk) secara lirih, lalu membaca surah Al-Fatihah ayat per ayat. Membaca Al-Fatihah adalah rukun sholat.</p>
+                    <div class="step-details">
+                        <div class="arabic-text">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+                        <div class="latin-text">A-udzu billahi minasy syaithaanir rajiim</div>
+                        <p class="translation">Dalil: Rasulullah ﷺ bersabda,</p>
+                        <div class="arabic-text">لاَ صَلاَةَ لِمَنْ لَمْ يَقْرَأْ بِفَاتِحَةِ الْكِتَابِ</div>
+                        <div class="latin-text">Laa shalata liman lam yaqra- bi-faatihatil-kitaab</div>
+                        <p class="translation">"Tidak sah sholat seseorang yang tidak membaca Al-Fatihah." (HR. Bukhari no. 756 dan Muslim no. 394)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="step-card" data-step="5">
+                    <div class="step-number">5</div>
+                    <h3>Membaca Surat dari Al-Qur'an</h3>
+                    <p>Setelah Al-Fatihah, membaca surat atau beberapa ayat dari Al-Qur'an yang mudah. Pada rakaat pertama biasanya lebih panjang dari rakaat kedua.</p>
+                    <div class="step-details">
+                        <p class="translation">Contoh: Surat Al-Ikhlas</p>
+                        <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (1) قُلْ هُوَ اللَّهُ أَحَدٌ (2) اللَّهُ الصَّمَدُ (3) لَمْ يَلِدْ وَلَمْ يُولَدْ (4) وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ (5)</div>
+                        <div class="latin-text">Bismillāhir-raḥmānir-raḥīm. Qul huwallāhu aḥad. Allāhuṣ-ṣamad. Lam yalid wa lam yūlad. Wa lam yakul lahū kufuwan aḥad.</div>
+                        <p class="translation">Membaca Surat Al-Falaq:</p>
+                        <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِنْ شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾</div>
+                        <div class="latin-text">Bismillāhir-raḥmānir-raḥīm. Qul a-ūżu birabbil-falaq. Min syarri mā khalaq. Wa min syarri gāsiqin iżā waqab. Wa min sharrin-naffāṡāti fil--uqad. Wa min syarri ḥāsidin iżā ḥasad.</div>
+                        <p class="translation">Membaca Surat An-Nas:</p>
+                        <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلَٰهِ النَّاسِ ﴿٣﴾ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٤﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٥﴾</div>
+                        <div class="latin-text">Bismillāhir-raḥmānir-raḥīm. Qul a-ūżu birabbin-nās. Malikin-nās. Ilāhin-nās. Min syarril-waswāsil-khannās. Allażī yuwaswisu fī ṣudūrin-nās. Minal-jinnati wan-nās.</div>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 6 -->
+                <div class="step-card" data-step="6">
+                    <div class="step-number">6</div>
+                    <h3>Ruku'</h3>
+                    <p>Mengangkat kedua tangan seperti takbiratul ihram sambil mengucapkan Allahu Akbar, lalu membungkuk (ruku'). Punggung lurus, kepala sejajar dengan punggung, dan kedua telapak tangan memegang lutut. Saat ruku' (thuma-ninah/tenang), Anda bisa membaca salah satu dari beberapa bacaan berikut:</p>
+                    <div class="step-details">
+                        <p class="translation">Pilihan 1:</p>
+                        <div class="arabic-text">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+                        <div class="latin-text">Subhaana Rabbiyal -Azhiim</div>
+                        <p class="translation">(Maha Suci Rabb-ku Yang Maha Agung) - dibaca 3 kali atau lebih</p>
+                        <p class="translation">Pilihan 2:</p>
+                        <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ، اللَّهُمَّ اغْفِرْ لِي</div>
+                        <div class="latin-text">Subhanakallahumma rabbanaa wa bihamdika, Allahummaghfir lii.</div>
+                        <p class="translation">(Maha Suci Engkau ya Allah, Rabb kami, dan segala puji bagi-Mu. Ya Allah, ampunilah aku.) (HR. Bukhari no. 794 dan Muslim no. 484)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 7 -->
+                <div class="step-card" data-step="7">
+                    <div class="step-number">7</div>
+                    <h3>I'tidal (Bangkit dari Ruku')</h3>
+                    <p>Bangkit dari ruku' sambil mengangkat kedua tangan dan mengucapkan:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">سَمِعَ اللهُ لِمَنْ حَمِدَهُ</div>
+                        <div class="latin-text">Sami-allahu liman hamidah</div>
+                        <p class="translation">(Allah Maha Mendengar orang yang memuji-Nya)</p>
+                        <p class="translation">Setelah berdiri tegak (thuma-ninah), Anda bisa membaca salah satu dari beberapa bacaan berikut:</p>
+                        <p class="translation">Pilihan 1:</p>
+                        <div class="arabic-text">رَبَّنَا وَلَكَ الْحَمْدُ</div>
+                        <div class="latin-text">Rabbanaa wa lakal hamd</div>
+                        <p class="translation">(Wahai Rabb kami, dan bagi-Mu segala puji)</p>
+                        <p class="translation">Pilihan 2:</p>
+                        <div class="arabic-text">رَبَّنَا لَكَ الْحَمْدُ، مِلْءَ السَّمَاوَاتِ وَمِلْءَ الأَرْضِ، وَمِلْءَ مَا شِئْتَ مِنْ شَيْءٍ بَعْدُ</div>
+                        <div class="latin-text">Rabbanaa lakal hamd, mil-as samaawaati wa mil-al ardh, wa mil-a maa syi-ta min syai-in ba-du.</div>
+                        <p class="translation">(Wahai Rabb kami, segala puji hanya bagi-Mu, sepenuh langit, sepenuh bumi, dan sepenuh apa saja yang Engkau kehendaki setelah itu.) (HR. Muslim no. 476)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 8 -->
+                <div class="step-card" data-step="8">
+                    <div class="step-number">8</div>
+                    <h3>Sujud</h3>
+                    <p>Turun untuk sujud sambil mengucapkan Allahu Akbar. Anggota badan yang menyentuh lantai ada 7: dahi (bersama hidung), kedua telapak tangan, kedua lutut, dan kedua ujung jari kaki. Saat sujud (thuma-ninah), Anda bisa membaca salah satu dari beberapa bacaan berikut:</p>
+                    <div class="step-details">
+                        <p class="translation">Pilihan 1:</p>
+                        <div class="arabic-text">سُبْحَانَ رَبِّيَ الأَعْلَى</div>
+                        <div class="latin-text">Subhaana Rabbiyal A-laa</div>
+                        <p class="translation">(Maha Suci Rabb-ku Yang Maha Tinggi) - dibaca 3 kali atau lebih</p>
+                        <p class="translation">Pilihan 2:</p>
+                        <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ، اللَّهُمَّ اغْفِرْ لِي</div>
+                        <div class="latin-text">Subhanakallahumma rabbanaa wa bihamdika, Allahummaghfir lii.</div>
+                        <p class="translation">(Maha Suci Engkau ya Allah, Rabb kami, dan segala puji bagi-Mu. Ya Allah, ampunilah aku.) (HR. Bukhari no. 794 dan Muslim no. 484)</p>
+                        <p class="translation">Pilihan 3:</p>
+                        <div class="arabic-text">سُبُّوحٌ قُدُّوسٌ، رَبُّ الْمَلاَئِكَةِ وَالرُّوحِ</div>
+                        <div class="latin-text">Subbuhun qudduusun, rabbul malaa-ikati war ruuh.</div>
+                        <p class="translation">(Maha Suci, Maha Kudus, Rabb para malaikat dan Jibril.) (HR. Muslim no. 487)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 9 -->
+                <div class="step-card" data-step="9">
+                    <div class="step-number">9</div>
+                    <h3>Duduk di Antara Dua Sujud</h3>
+                    <p>Bangkit dari sujud sambil mengucapkan Allahu Akbar dan duduk iftirasy (menduduki telapak kaki kiri dan menegakkan telapak kaki kanan). Saat duduk (thuma-ninah), Anda bisa membaca salah satu dari beberapa bacaan berikut:</p>
+                    <div class="step-details">
+                        <p class="translation">Pilihan 1:</p>
+                        <div class="arabic-text">رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْفَعْنِي، وَارْزُقْنِي، وَاهْدِنِي، وَعَافِنِي</div>
+                        <div class="latin-text">Rabbighfirlii, warhamnii, wajburnii, warfa-nii, warzuqnii, wahdinii, wa-aafinii.</div>
+                        <p class="translation">(Ya Rabb, ampunilah aku, rahmatilah aku, cukupkanlah aku, angkatlah derajatku, berilah aku rezeki, berilah aku petunjuk, dan sehatkanlah aku). (HR. Abu Dawud no. 850 dan At-Tirmidzi no. 284, dihasankan oleh Syaikh Al-Albani)</p>
+                        <p class="translation">Pilihan 2:</p>
+                        <div class="arabic-text">رَبِّ اغْفِرْ لِي، رَبِّ اغْفرْ لِي</div>
+                        <div class="latin-text">Rabbighfirlii, Rabbighfirlii.</div>
+                        <p class="translation">(Ya Rabb, ampunilah aku. Ya Rabb, ampunilah aku.) (HR. Abu Dawud no. 874 dan An-Nasa-i no. 1146, dishahihkan oleh Syaikh Al-Albani)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 10 -->
+                <div class="step-card" data-step="10">
+                    <div class="step-number">10</div>
+                    <h3>Sujud Kedua</h3>
+                    <p>Melakukan sujud kedua seperti sujud pertama, dengan bacaan yang sama.</p>
+                    <div class="step-details">
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 11 -->
+                <div class="step-card" data-step="11">
+                    <div class="step-number">11</div>
+                    <h3>Bangkit ke Rakaat Berikutnya</h3>
+                    <p>Bangkit dari sujud kedua sambil mengucapkan Allahu Akbar untuk memulai rakaat selanjutnya, dan melakukan gerakan serta bacaan yang sama seperti rakaat pertama (dimulai dari Al-Fatihah).</p>
+                    <div class="step-details">
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 12 -->
+                <div class="step-card" data-step="12">
+                    <div class="step-number">12</div>
+                    <h3>Tasyahud Awal (Jika Sholat Lebih dari Dua Rakaat)</h3>
+                    <p>Pada rakaat kedua, setelah sujud kedua, duduk tasyahud awal dengan posisi duduk iftirasy. Membaca:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+                        <div class="latin-text">At-tahiyyaatu lillaahi wash-shalawaatu wath-thayyibaat, Assalaamu -alaika ayyuhan nabiyyu wa rahmatullahi wa barakaatuh, Assalaamu -alainaa wa -alaa -ibaadillahish shaalihin, Asyhadu an laa ilaaha illallaah wa asyhadu anna Muhammadan -abduhu wa rasuuluh.</div>
+                        <p class="translation">(Segala penghormatan, sholawat, dan kebaikan hanya milik Allah. Semoga keselamatan, rahmat, dan berkah Allah terlimpah atasmu, wahai Nabi. Semoga keselamatan terlimpah atas kami dan hamba-hamba Allah yang shalih. Aku bersaksi bahwa tiada sesembahan yang berhak disembah melainkan Allah, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya.) (HR. Bukhari no. 831 dan Muslim no. 402)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 13 -->
+                <div class="step-card" data-step="13">
+                    <div class="step-number">13</div>
+                    <h3>Berdiri Tegak Untuk Memulai Rakaat Ketiga</h3>
+                    <p>Gerakan sholat dimulai dari membaca Surah Al-Fatihah (tanpa membaca surah atau ayat tambahan), dilanjutkan dengan rukuk sambil membaca tasbih, lalu bangkit ke posisi i-tidal, kemudian melakukan sujud pertama, duduk di antara dua sujud, dan diakhiri dengan sujud kedua.</p>
+                    <div class="step-details">
+                        <p class="translation">Catatan: Apabila bangkit dari rakaat kedua (menuju rakaat ketiga), dianjurkan mengangkat kedua tangan. Berikut adalah empat gerakan dalam sholat di mana dianjurkan untuk mengangkat kedua tangan: Takbiratul Ihram (saat memulai sholat), saat hendak rukuk, saat bangkit dari rukuk atau i-tidal, dan saat bangkit dari tasyahud awal menuju rakaat ketiga.</p>
+                        <p class="translation">Dalil: bahwa Ibnu Umar melakukannya untuk menjelaskan dan mencontohkan bagaimana Rasulullah ﷺ sholat. ketika memulai sholat, beliau bertakbir dan mengangkat kedua tangannya. Ketika rukuk, beliau mengangkat kedua tangannya. Dan ketika mengucapkan "Sami-allahu liman hamidah", beliau mengangkat kedua tangannya. Dan ketika bangkit dari dua rakaat, beliau mengangkat kedua tangannya. (HR.Al-Bukhari no.739).</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 14 -->
+                <div class="step-card" data-step="14">
+                    <div class="step-number">14</div>
+                    <h3>Tasyahud Akhir</h3>
+                    <p>Pada rakaat terakhir, duduk tawarruk (kaki kiri dimasukkan ke bawah kaki kanan, dan duduk di atas lantai). Bacaannya sama dengan tasyahud awal, namun ditambah dengan shalawat Ibrahimiyyah. Setelah itu, dianjurkan membaca doa perlindungan dari empat perkara.</p>
+                    <div class="step-details">
+                        <p class="translation">Bacaan Tasyahud Akhir Lengkap:</p>
+                        <div class="arabic-text">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+                        <div class="latin-text">At-tahiyyaatu lillaahi wash-shalawaatu wath-thayyibaat, Assalaamu -alaika ayyuhan nabiyyu wa rahmatullahi wa barakaatuh, Assalaamu -alainaa wa -alaa -ibaadillahish shaalihin, Asyhadu an laa ilaaha illallaah wa asyhadu anna Muhammadan -abduhu wa rasuuluh.</div>
+                        <p class="translation">Tambahan Shalawat Ibrahimiyyah:</p>
+                        <div class="arabic-text">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+                        <div class="latin-text">Allahumma shalli -ala Muhammad wa -ala aali Muhammad, kamaa shallaita -ala Ibrahim wa -ala aali Ibrahim, innaka hamidum majiid. Allahumma baarik -ala Muhammad wa -ala aali Muhammad, kamaa baarakta -ala Ibrahim wa -ala aali Ibrahim, innaka hamidum majiid.</div>
+                        <p class="translation">(Ya Allah, berikanlah rahmat kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberikan rahmat kepada Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia. Ya Allah, berikanlah berkah kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberikan berkah kepada Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia.)</p>
+                        <p class="translation">Tambahan Doa:</p>
+                        <p class="translation">Pilihan 1: Doa Perlindungan dari Empat Perkara</p>
+                        <div class="arabic-text">اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيْحِ الدَّجَّالِ.</div>
+                        <div class="latin-text">Allaahumma innii a-uużu bika min -adzaabi jahannama, wa min -adzaabil qabri, wa min fitnatil mahyaa wal mamaati, wa min syarri fitnatil massiihid-dajjaal.</div>
+                        <p class="translation">(Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal.)</p>
+                        <p class="translation">Hadis: Diriwayatkan oleh Imam Muslim dalam kitabnya Sahih Muslim, Bab "Apa yang Diucapkan setelah Tasyahud", hadis nomor 588.</p>
+                        <p class="translation">Pilihan 2: Doa Memohon Ampunan dan Rahmat</p>
+                        <div class="arabic-text">اَللّٰهُمَّ إِنِّيْ ظَلَمْتُ نَفْسِيْ ظُلْمًا كَثِيْرًا، وَلَا يَغْفِرُ الذُّنُوْبَ إِلَّا أَنْتَ، فَاغْفِرْ لِيْ مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِيْ إِنَّكَ أَنْتَ الْغَفُوْرُ الرَّحِيْمُ.</div>
+                        <div class="latin-text">Allaahumma innii zhalmatu nafsii zhulman katsiiran, wa laa yaghfirudz-dzunuuba illaa anta, faghfirlii maghfiratan min -indika, warhamnii innaka antal ghafuurur-rahiim.</div>
+                        <p class="translation">(Ya Allah, sesungguhnya aku telah banyak menzalimi diriku sendiri, dan tidak ada yang dapat mengampuni dosa-dosa kecuali Engkau. Maka ampunilah aku dengan ampunan dari sisi-Mu, dan rahmatilah aku. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang.)</p>
+                        <p class="translation">Hadis: Diriwayatkan oleh Imam Bukhari dalam kitabnya Sahih Bukhari, Bab "Doa Sebelum Salam", hadis nomor 834, dan juga oleh Imam Muslim, Bab "Duaa dalam Sholat", hadis nomor 2705.</p>
+                        <p class="translation">Pilihan 3: Doa untuk Mendapatkan Pertolongan dalam Beribadah</p>
+                        <div class="arabic-text">اَللّٰهُمَّ أَعِنِّيْ عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ.</div>
+                        <div class="latin-text">Allaahumma a-innii -alaa dzikrika wa syukrika wa husni -ibaadatik.</div>
+                        <p class="translation">(Ya Allah, tolonglah aku untuk senantiasa mengingat-Mu, bersyukur kepada-Mu, dan beribadah dengan baik kepada-Mu.)</p>
+                        <p class="translation">Hadis: Diriwayatkan oleh Imam Abu Dawud dalam kitab Sunan Abu Dawud, Bab "Doa", hadis nomor 1522, dan juga oleh Imam An-Nasa-i dalam kitab Sunan An-Nasa-i, Bab "Kebaikan", hadis nomor 1303. Hadis ini dinilai sahih oleh Syekh Al-Albani.</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 15 -->
+                <div class="step-card" data-step="15">
+                    <div class="step-number">15</div>
+                    <h3>Salam</h3>
+                    <p>Menoleh ke kanan sambil mengucapkan:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ</div>
+                        <div class="latin-text">Assalaamu -alaikum wa rahmatullah</div>
+                        <p class="translation">Kemudian menoleh ke kiri sambil mengucapkan salam yang sama.</p>
+                        <p class="translation">Dalil: "Rasulullah ﷺ dahulu mengerjakan sholat. Lalu beliau mengucapkan salam ke kanan dan ke kiri hingga terlihat pipi beliau yang putih. (Beliau mengucapkan): 'Assalamu-alaikum wa rahmatullah, Assalamu-alaikum wa rahmatullah.'" (Hadis ini diriwayatkan oleh Imam Muslim dalam kitabnya Sahih Muslim, bab "At-Tasyahhud", hadis nomor 582.).</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dzikir Page -->
+        <div id="dzikir-page" class="page">
+            <section class="hero">
+                <h2>Dzikir Setelah Sholat Sesuai Sunnah</h2>
+                <p>Lengkap dengan dalil dari Al-Qur'an dan Hadits yang Shahih</p>
+            </section>
+            <div class="steps-container">
+                <!-- Dzikir 1 -->
+                <div class="step-card" data-step="1">
+                    <div class="step-number">1</div>
+                    <h3>Istighfar (3 kali) dan Doa Pujian untuk Allah</h3>
+                    <p>Membaca:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">أَسْتَغْفِرُ اللهَ</div>
+                        <div class="latin-text">Astaghfirullah</div>
+                        <p class="translation">(Aku memohon ampun kepada Allah) - dibaca 3 kali</p>
+                        <p class="translation">Lalu membaca:</p>
+                        <div class="arabic-text">اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالإِكْرَامِ</div>
+                        <div class="latin-text">Allahumma antas salaam wa minkas salaam, tabaarakta yaa dzal jalaali wal ikraam.</div>
+                        <p class="translation">(Ya Allah, Engkau adalah As-Salam (Maha Pemberi Keselamatan), dan dari-Mu keselamatan. Maha Berkah Engkau, wahai Dzat yang memiliki Keagungan dan Kemuliaan).</p>
+                        <p class="translation">Dalil: Dari Tsauban radhiyallahu -anhu, beliau berkata, "Rasulullah ﷺ jika selesai dari sholatnya, beliau beristighfar tiga kali, lalu mengucapkan (doa di atas)." (HR. Muslim no. 591)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dzikir 2 -->
+                <div class="step-card" data-step="2">
+                    <div class="step-number">2</div>
+                    <h3>Tahlil</h3>
+                    <p>Membaca:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَىْءٍ قَدِيرٌ، اللَّهُمَّ لاَ مَانِعَ لِمَا أَعْطَيْتَ وَلاَ مُعْطِىَ لِمَا مَنَعْتَ وَلاَ يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ</div>
+                        <div class="latin-text">Laa ilaha illallah wahdahu laa syariika lah, lahul mulku wa lahul hamd, wa huwa -alaa kulli syai-in qadiir. Allahumma laa maani-a limaa a-thaita wa laa mu-thiya limaa mana-ta wa laa yanfa-u dzal jaddi minkal jaddu.</div>
+                        <p class="translation">(Tiada sesembahan yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan, dan bagi-Nya segala puji, dan Dia Maha Kuasa atas segala sesuatu. Ya Allah, tidak ada yang dapat menghalangi apa yang Engkau berikan, dan tidak ada yang dapat memberi apa yang Engkau halangi. Dan tidaklah bermanfaat kekayaan dari orang yang memiliki kekayaan, dari sisi-Mu-lah semua kekayaan.)</p>
+                        <p class="translation">Dalil: Dari Al-Mughirah bin Syu-bah radhiyallahu -anhu, bahwa Nabi ﷺ biasa membaca dzikir ini setelah selesai sholat. (HR. Bukhari no. 844 dan Muslim no. 593)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dzikir 3 -->
+                <div class="step-card" data-step="3">
+                    <div class="step-number">3</div>
+                    <h3>Tasbih, Tahmid, dan Takbir (masing-masing 33 kali)</h3>
+                    <p>Membaca:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">سُبْحَانَ اللهِ</div>
+                        <div class="latin-text">Subhanallah</div>
+                        <p class="translation">(Maha Suci Allah) - 33 kali</p>
+                        <div class="arabic-text">الْحَمْدُ لِلَّهِ</div>
+                        <div class="latin-text">Alhamdulillah</div>
+                        <p class="translation">(Segala puji bagi Allah) - 33 kali</p>
+                        <div class="arabic-text">اللهُ أَكْبَرُ</div>
+                        <div class="latin-text">Allahu Akbar</div>
+                        <p class="translation">(Allah Maha Besar) - 33 kali</p>
+                        <p class="translation">Lalu digenapkan menjadi 100 dengan membaca:</p>
+                        <div class="arabic-text">لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَىْءٍ قَدِيرٌ</div>
+                        <div class="latin-text">Laa ilaha illallah wahdahu laa syariika lah, lahul mulku wa lahul hamd, wa huwa -alaa kulli syai-in qadiir.</div>
+                        <p class="translation">Dalil dan Faedahnya: Rasulullah ﷺ bersabda, "Barangsiapa yang di akhir setiap sholat membaca tasbih 33 kali, tahmid 33 kali, takbir 33 kali—itu semua berjumlah 99—kemudian menggenapkannya menjadi 100 dengan bacaan 'Laa ilaha illallah...' (di atas), maka akan diampuni dosa-dosanya meskipun sebanyak buih di lautan." (HR. Muslim no. 597)</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dzikir 4 -->
+                <div class="step-card" data-step="4">
+                    <div class="step-number">4</div>
+                    <h3>Membaca Ayat Kursi (QS. Al-Baqarah: 255)</h3>
+                    <p>Membaca ayat kursi satu kali.</p>
+                    <div class="step-details">
+                        <div class="arabic-text">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                        <div class="latin-text">Allāhu lā ilāha illā huwal-Ḥayyul-Qayyūm, lā ta'khudhuhū sinatun wa lā nawm, lahu mā fis-samāwāti wa mā fil-arḍ, man żal-lażī yashfa-u -indahū illā bi'iżnih, ya-lamu mā bayna aidīhim wa mā khalfahum, wa lā yuḥīṭūna bišay-im min -ilmihi illā bimā syā-a, wasi-a kursiyyuhus-samāwāti wal-arḍ, wa lā ya-ūduhu ḥifẓuhumā, wa huwal--Aliyyul--Aẓīm.</div>
+                        <p class="translation">Dalil dan Faedahnya: Rasulullah ﷺ bersabda, "Barangsiapa membaca Ayat Kursi setiap selesai sholat fardhu, maka tidak ada yang menghalanginya masuk surga kecuali kematian." (HR. An-Nasa-i dalam Al-Kubra no. 9928, dishahihkan oleh Syaikh Al-Albani)</p>
+                        <p class="translation">Membaca Surat Al-Ikhlas:</p>
+                        <div class="arabic-text">قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ.</div>
+                        <div class="latin-text">Qul huwallāhu aḥad, Allāhuṣ-ṣamad, lam yalid wa lam yūlad, wa lam yakul lahū kufu-an aḥad.</div>
+                        <p class="translation">(Katakanlah: Dialah Allah Yang Maha Esa. Allah adalah Tuhan tempat bergantung oleh segala sesuatu. Dia tidak beranak dan tidak diperanakkan. Dan tidak ada seorang pun yang setara dengan-Nya.)</p>
+                        <p class="translation">Membaca Surat Al-Falaq:</p>
+                        <div class="arabic-text">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِنْ شَرِّ مَا خَلَقَ، وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ، وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ.</div>
+                        <div class="latin-text">Qul a-ūżu birabbil-falaq, min syarri mā khalaq, wa min syarri gāsiqin iżā waqab, wa min syarrin-naffāṡāti fil--uqad, wa min syarri ḥāsidin iżā ḥasad.</div>
+                        <p class="translation">(Katakanlah: Aku berlindung kepada Tuhan yang menguasai subuh, dari kejahatan makhluk-Nya, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan wanita-wanita tukang sihir yang mengembus nafasnya pada buhulan, dan dari kejahatan orang yang dengki apabila ia dengki.)</p>
+                        <p class="translation">Membaca Surat An-Nas:</p>
+                        <div class="arabic-text">قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ، إِلَٰهِ النَّاسِ، مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ، الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ، مِنَ الْجِنَّةِ وَالنَّاسِ.</div>
+                        <div class="latin-text">Qul a-ūżu birabbin-nās, Malikin-nās, Ilāhin-nās, min syarril-waswāsil-khannās, allażī yuwaswisu fī ṣudūrin-nās, minal-jinnati wan-nās.</div>
+                        <p class="translation">(Katakanlah: Aku berlindung kepada Tuhan manusia, Raja manusia, Sesembahan manusia, dari kejahatan bisikan yang bersembunyi, yang membisikkan kejahatan ke dalam dada manusia, dari (golongan) jin dan manusia.)</p>
+                        <p class="translation">Setelah sholat Dhuhur, Ashar, dan Isya dibaca masing-masing 1 kali. Khusus setelah sholat Subuh dan Maghrib, dibaca masing-masing 3 kali.</p>
+                        <p class="translation">Dalil dan Faedahnya: Dari -Uqbah bin -Amir, beliau berkata, "Rasulullah ﷺ memerintahkanku untuk membaca Al-Mu-awwidzat (Al-Ikhlas, Al-Falaq, An-Nas) di akhir setiap sholat." (HR. Abu Dawud no. 1523, dishahihkan Syaikh Al-Albani). Faedahnya adalah sebagai perlindungan dan penjagaan dari segala keburukan.</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dzikir 5 -->
+                <div class="step-card" data-step="5">
+                    <div class="step-number">5</div>
+                    <h3>Doa Memohon Ilmu, Rezeki, dan Amal yang Diterima</h3>
+                    <p>Membaca:</p>
+                    <div class="step-details">
+                        <div class="arabic-text">اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ عِلْماً نَافِعاً، وَرِزْقاً طَيِّباً، وَعَمَلاً مُتَقَبَّلاً</div>
+                        <div class="latin-text">Allāhumma innī as-aluka -ilman nāfi-a, wa rizqan ṭayyibā, wa -amalan mutaqabbalā.</div>
+                        <p class="translation">(Ya Allah, sungguh aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima.)</p>
+                        <p class="translation">(HR. Ibnu Majah no. 925).</p>
+                        <div class="close-details">
+                            <button class="close-btn">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- Jadwal Sholat Page -->
+        <div id="jadwal-page" class="page">
+            <section class="hero">
+                <h2>Jadwal Sholat Hari Ini</h2>
+                <p>Jadwal sholat berdasarkan lokasi Anda</p>
+            </section>
+            <div class="prayer-times">
+                <div class="location-info" id="locationInfo">
+                    <i class="fas fa-map-marker-alt"></i> Lokasi tidak ditemukan. Silakan aktifkan GPS.
+                </div>
+                <button class="get-location-btn" id="getLocationBtn">
+                    <i class="fas fa-location-arrow"></i> Dapatkan Lokasi Saya
+                </button>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="prayer-times-grid" id="prayerTimesGrid">
+                    <!-- Prayer times will be inserted here by JavaScript -->
+                    <div class="prayer-time-item">
+                        <div class="name">Subuh</div>
+                        <div class="time" id="subuh-time">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="name">Dzuhur</div>
+                        <div class="time" id="dzuhur-time">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="name">Ashar</div>
+                        <div class="time" id="ashar-time">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="name">Maghrib</div>
+                        <div class="time" id="maghrib-time">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="name">Isya</div>
+                        <div class="time" id="isya-time">--:--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kalender Page -->
+        <div id="kalender-page" class="page">
+            <section class="hero">
+                <h2>Kalender Hijriah Interaktif</h2>
+                <p>Kalender Hijriah yang tersinkronisasi dengan Kalender Masehi</p>
+            </section>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <div class="calendar-title" id="calendarTitle">Muharram 1446 H</div>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <button id="today">Hari Ini</button>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup for Calendar Date Info -->
+    <div class="popup-overlay" id="calendarPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="popupClose">&times;</button>
+            <h3 class="popup-title" id="popupTitle">Tanggal</h3>
+            <div class="popup-info" id="popupInfo">
+                <!-- Info will be inserted by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <!-- Social Media -->
+    <div class="social-media">
+        <a href="https://www.instagram.com/cloudsunnah.ig?igsh=MXhqbGZwNHB6em5udw==" class="social-icon instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@cloudsunnah?_t=ZS-8zAOfynDIcj&_r=1" class="social-icon tiktok" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CLOUD SUNNAH - Panduan Wudhu, Sholat & Dzikir Sesuai Sunnah Nabi Muhammad ﷺ</p>
+        </div>
+    </footer>
+    <script>
+        // Settings Toggle
+        const settingsToggle = document.getElementById('settingsToggle');
+        const settingsOverlay = document.getElementById('settingsOverlay');
+        const settingsClose = document.getElementById('settingsClose');
+        settingsToggle.addEventListener('click', () => {
+            settingsOverlay.classList.add('active');
+            playSound('click');
+        });
+        settingsClose.addEventListener('click', () => {
+            settingsOverlay.classList.remove('active');
+            playSound('close');
+        });
+        // Close settings when clicking outside the menu
+        settingsOverlay.addEventListener('click', (e) => {
+            if (e.target === settingsOverlay) {
+                settingsOverlay.classList.remove('active');
+                playSound('close');
+            }
+        });
+        // Font Size Controls
+        const increaseFont = document.getElementById('increaseFont');
+        const decreaseFont = document.getElementById('decreaseFont');
+        const fontSizeValue = document.getElementById('fontSizeValue');
+        const increaseArabicFont = document.getElementById('increaseArabicFont');
+        const decreaseArabicFont = document.getElementById('decreaseArabicFont');
+        const arabicFontSizeValue = document.getElementById('arabicFontSizeValue');
+        const latinToggle = document.getElementById('latinToggle');
+        const latinTexts = document.querySelectorAll('.latin-text');
+        let currentFontSize = 16;
+        let currentArabicFontSize = 20;
+        increaseFont.addEventListener('click', () => {
+            if (currentFontSize < 24) {
+                currentFontSize += 2;
+                updateFontSize();
+                playSound('click');
+            }
+        });
+        decreaseFont.addEventListener('click', () => {
+            if (currentFontSize > 12) {
+                currentFontSize -= 2;
+                updateFontSize();
+                playSound('click');
+            }
+        });
+        increaseArabicFont.addEventListener('click', () => {
+            if (currentArabicFontSize < 28) {
+                currentArabicFontSize += 2;
+                updateArabicFontSize();
+                playSound('click');
+            }
+        });
+        decreaseArabicFont.addEventListener('click', () => {
+            if (currentArabicFontSize > 16) {
+                currentArabicFontSize -= 2;
+                updateArabicFontSize();
+                playSound('click');
+            }
+        });
+        latinToggle.addEventListener('change', () => {
+            latinTexts.forEach(text => {
+                text.style.display = latinToggle.checked ? 'block' : 'none';
+            });
+            playSound('click');
+        });
+        function updateFontSize() {
+            document.documentElement.style.setProperty('--font-size', currentFontSize + 'px');
+            fontSizeValue.textContent = currentFontSize;
+        }
+        function updateArabicFontSize() {
+            document.documentElement.style.setProperty('--arabic-font-size', currentArabicFontSize + 'px');
+            arabicFontSizeValue.textContent = currentArabicFontSize;
+        }
+        // Navigation
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const pages = document.querySelectorAll('.page');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pageId = button.getAttribute('data-page');
+                // Update active button
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Show selected page
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                    if (page.id === pageId + '-page') {
+                        page.classList.add('active');
+                    }
+                });
+                playSound('click');
+                
+                // Initialize calendar if needed
+                if (pageId === 'kalender') {
+                    renderCalendar();
+                }
+            });
+        });
+        // Step Cards Toggle
+        const stepCards = document.querySelectorAll('.step-card');
+        stepCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('close-btn')) {
+                    card.classList.toggle('active');
+                    playSound('click');
+                }
+            });
+        });
+        // Close Buttons
+        const closeButtons = document.querySelectorAll('.close-btn');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const stepCard = e.target.closest('.step-card');
+                stepCard.classList.remove('active');
+                playSound('close');
+            });
+        });
+        // Play Sound Function
+        function playSound(type) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                if (type === 'click') {
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 523.25; // C5
+                    gainNode.gain.value = 0.1;
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                } else if (type === 'close') {
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 392.00; // G4
+                    gainNode.gain.value = 0.1;
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                }
+            } catch (e) {
+                console.log("Audio playback not supported or blocked.");
+            }
+        }
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentSections = document.querySelectorAll('.step-card, .hero');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            contentSections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+        });
+        // --- New Feature: Jadwal Sholat ---
+        // Jadwal Sholat
+        const getLocationBtn = document.getElementById('getLocationBtn');
+        const locationInfo = document.getElementById('locationInfo');
+        const errorMessage = document.getElementById('errorMessage');
+        const prayerTimesGrid = document.getElementById('prayerTimesGrid');
+        getLocationBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                getLocationBtn.disabled = true;
+                getLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendapatkan lokasi...';
+                errorMessage.textContent = '';
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                errorMessage.textContent = "Geolocation tidak didukung oleh browser ini.";
+                getLocationBtn.disabled = false;
+                getLocationBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi Saya';
+            }
+        });
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            // Reverse geocoding to get city name (simplified)
+            locationInfo.innerHTML = `<i class="fas fa-map-marker-alt"></i> Koordinat: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+            // Fetch prayer times using Aladhan API
+            fetchPrayerTimes(lat, lon);
+        }
+        function showError(error) {
+            getLocationBtn.disabled = false;
+            getLocationBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi Saya';
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage.textContent = "Izin akses lokasi ditolak oleh pengguna.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage.textContent = "Informasi lokasi tidak tersedia.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage.textContent = "Permintaan lokasi melebihi batas waktu.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    errorMessage.textContent = "Terjadi kesalahan yang tidak diketahui.";
+                    break;
+            }
+        }
+        function fetchPrayerTimes(lat, lon) {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1; // Months are 0-indexed
+            const day = today.getDate();
+            // Using Aladhan API (Monthly data for simplicity, could also use daily)
+            const url = `https://api.aladhan.com/v1/calendar?latitude=${lat}&longitude=${lon}&method=2&month=${month}&year=${year}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        const timings = data.data[day - 1].timings; // day-1 because array is 0-indexed
+                        document.getElementById('subuh-time').textContent = timings.Fajr.substring(0, 5);
+                        document.getElementById('dzuhur-time').textContent = timings.Dhuhr.substring(0, 5);
+                        document.getElementById('ashar-time').textContent = timings.Asr.substring(0, 5);
+                        document.getElementById('maghrib-time').textContent = timings.Maghrib.substring(0, 5);
+                        document.getElementById('isya-time').textContent = timings.Isha.substring(0, 5);
+                    } else {
+                        errorMessage.textContent = "Gagal memuat jadwal sholat. Silakan coba lagi.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching prayer times:', error);
+                    errorMessage.textContent = "Terjadi kesalahan saat menghubungi server. Silakan coba lagi.";
+                })
+                .finally(() => {
+                    getLocationBtn.disabled = false;
+                    getLocationBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Lokasi & Jadwal';
+                });
+        }
+
+        // --- New Feature: Kalender Hijriah Interaktif ---
+        // Calendar Variables
+        let currentHijriDate = null; // Will hold the current Hijri date object
+        let displayHijriYear = 0;
+        let displayHijriMonth = 0; // 1-based index for display
+
+        // DOM Elements for Calendar
+        const calendarTitle = document.getElementById('calendarTitle');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const todayBtn = document.getElementById('today');
+        const calendarPopup = document.getElementById('calendarPopup');
+        const popupClose = document.getElementById('popupClose');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupInfo = document.getElementById('popupInfo');
+
+        // Calendar Navigation Event Listeners
+        prevMonthBtn.addEventListener('click', () => {
+            displayHijriMonth--;
+            if (displayHijriMonth < 1) {
+                displayHijriMonth = 12;
+                displayHijriYear--;
+            }
+            renderCalendar();
+            playSound('click');
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            displayHijriMonth++;
+            if (displayHijriMonth > 12) {
+                displayHijriMonth = 1;
+                displayHijriYear++;
+            }
+            renderCalendar();
+            playSound('click');
+        });
+
+        todayBtn.addEventListener('click', () => {
+            // Reset to current date
+            const now = new Date();
+            currentHijriDate = new HijriDate(now);
+            displayHijriYear = currentHijriDate.getFullYear();
+            displayHijriMonth = currentHijriDate.getMonth() + 1; // Convert to 1-based
+            renderCalendar();
+            playSound('click');
+        });
+
+        popupClose.addEventListener('click', () => {
+            calendarPopup.classList.remove('active');
+            playSound('close');
+        });
+
+        // Close popup when clicking outside
+        calendarPopup.addEventListener('click', (e) => {
+            if (e.target === calendarPopup) {
+                calendarPopup.classList.remove('active');
+                playSound('close');
+            }
+        });
+
+        // Render Calendar Function
+        function renderCalendar() {
+            // Update calendar title
+            calendarTitle.textContent = `${getHijriMonthName(displayHijriMonth)} ${displayHijriYear} H`;
+
+            // Clear existing grid
+            calendarGrid.innerHTML = '';
+
+            // Add day headers
+            const dayHeaders = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            dayHeaders.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'calendar-day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+
+            // Determine the first day of the month (Gregorian) to calculate offset
+            // We need to find the weekday of the 1st of the current Hijri month
+            const firstDayOfMonthHijri = new HijriDate(displayHijriYear, displayHijriMonth - 1, 1); // Month is 0-based in HijriDate
+            const firstDayOfMonthGregorian = firstDayOfMonthHijri.toGregorian();
+            const firstDayOfWeek = firstDayOfMonthGregorian.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+            // Get number of days in the month
+            const daysInMonth = getDaysInHijriMonth(displayHijriMonth, displayHijriYear);
+
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'calendar-date other-month';
+                
+                // Calculate the date from the previous month
+                const prevMonth = displayHijriMonth === 1 ? 12 : displayHijriMonth - 1;
+                const prevYear = displayHijriMonth === 1 ? displayHijriYear - 1 : displayHijriYear;
+                const daysInPrevMonth = getDaysInHijriMonth(prevMonth, prevYear);
+                const prevHijriDay = daysInPrevMonth - firstDayOfWeek + i + 1;
+                
+                const prevHijriDate = new HijriDate(prevYear, prevMonth - 1, prevHijriDay); // Month 0-based
+                const prevGregorianDate = prevHijriDate.toGregorian();
+                
+                emptyCell.innerHTML = `
+                    <div class="gregorian-date">${prevGregorianDate.getDate()}</div>
+                    <div class="hijri-date">${prevHijriDay} ${getHijriMonthName(prevMonth).substring(0, 3)}</div>
+                `;
+                calendarGrid.appendChild(emptyCell);
+            }
+
+            // Get today's date for comparison
+            const today = new Date();
+            const todayHijri = new HijriDate(today);
+            
+            // Add cells for each day of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateCell = document.createElement('div');
+                dateCell.className = 'calendar-date';
+                
+                // Create Hijri and Gregorian date objects for this cell
+                const cellHijriDate = new HijriDate(displayHijriYear, displayHijriMonth - 1, day); // Month 0-based
+                const cellGregorianDate = cellHijriDate.toGregorian();
+                
+                // Check if this is today
+                if (displayHijriYear === todayHijri.getFullYear() && 
+                    displayHijriMonth === (todayHijri.getMonth() + 1) && // Convert back to 1-based
+                    day === todayHijri.getDate()) {
+                    dateCell.classList.add('today');
+                }
+                
+                // Check for special dates and add color classes
+                const specialDate = getSpecialDateInfo(displayHijriMonth, day, displayHijriYear);
+                if (specialDate) {
+                    if (specialDate.type === 'sunnah') {
+                        dateCell.classList.add('sunnah');
+                    } else if (specialDate.type === 'wajib') {
+                        dateCell.classList.add('wajib');
+                    } else if (specialDate.type === 'larangan') {
+                        dateCell.classList.add('larangan');
+                    }
+                }
+                
+                dateCell.innerHTML = `
+                    <div class="gregorian-date">${cellGregorianDate.getDate()}</div>
+                    <div class="hijri-date">${day}</div>
+                `;
+                
+                // Add click event
+                dateCell.addEventListener('click', () => {
+                    showDateInfo(displayHijriYear, displayHijriMonth, day, cellGregorianDate, specialDate);
+                    playSound('click');
+                });
+                
+                calendarGrid.appendChild(dateCell);
+            }
+            
+            // Calculate how many cells we've added so far
+            const totalCells = firstDayOfWeek + daysInMonth;
+            const remainingCells = 42 - totalCells; // 6 rows * 7 days
+            
+            // Add empty cells for days after the last day of the month
+            for (let i = 1; i <= remainingCells; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'calendar-date other-month';
+                
+                // Calculate the date from the next month
+                const nextMonth = displayHijriMonth === 12 ? 1 : displayHijriMonth + 1;
+                const nextYear = displayHijriMonth === 12 ? displayHijriYear + 1 : displayHijriYear;
+                
+                const nextHijriDate = new HijriDate(nextYear, nextMonth - 1, i); // Month 0-based
+                const nextGregorianDate = nextHijriDate.toGregorian();
+                
+                emptyCell.innerHTML = `
+                    <div class="gregorian-date">${nextGregorianDate.getDate()}</div>
+                    <div class="hijri-date">${i} ${getHijriMonthName(nextMonth).substring(0, 3)}</div>
+                `;
+                calendarGrid.appendChild(emptyCell);
+            }
+        }
+
+        // Function to show date information in popup
+        function showDateInfo(hijriYear, hijriMonth, hijriDay, gregorianDate, specialDate) {
+            popupTitle.textContent = `${hijriDay} ${getHijriMonthName(hijriMonth)} ${hijriYear} H`;
+            
+            let infoHTML = `
+                <p><strong>Tanggal Masehi:</strong> ${gregorianDate.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            `;
+            
+            if (specialDate) {
+                infoHTML += `<p><strong>${specialDate.name}</strong></p>`;
+                if (specialDate.description) {
+                    infoHTML += `<p>${specialDate.description}</p>`;
+                }
+                if (specialDate.type === 'sunnah') {
+                    infoHTML += `<p><span style="color: var(--color-sunnah);">●</span> Puasa Sunnah</p>`;
+                } else if (specialDate.type === 'wajib') {
+                    infoHTML += `<p><span style="color: var(--color-wajib);">●</span> Puasa Wajib/Hari Raya</p>`;
+                } else if (specialDate.type === 'larangan') {
+                    infoHTML += `<p><span style="color: var(--color-larangan);">●</span> Larangan Puasa</p>`;
+                }
+            } else {
+                infoHTML += `<p><span style="color: var(--color-normal);">●</span> Hari Biasa</p>`;
+            }
+            
+            popupInfo.innerHTML = infoHTML;
+            calendarPopup.classList.add('active');
+        }
+
+        // Helper function to get Hijri month name
+        function getHijriMonthName(month) {
+            // month is 1-based
+            const months = [
+                '', 'Muharram', 'Shafar', 'Rabi\'ul Awwal', 'Rabi\'ul Akhir', 'Jumadil Awwal', 'Jumadil Akhir',
+                'Rajab', 'Sya\'ban', 'Ramadhan', 'Syawal', 'Dzulqa\'dah', 'Dzulhijjah'
+            ];
+            return months[month] || '';
+        }
+
+        // Helper function to get number of days in a Hijri month
+        function getDaysInHijriMonth(month, year) {
+            // month is 1-based
+            // The HijriDate library should handle this, but we can also calculate it
+            // For simplicity, we'll use the library's method if available
+            // Otherwise, a basic calculation (not perfectly accurate but close)
+            
+            // In the HijriDate library, months can be 29 or 30 days
+            // The library's getDaysInMonth() method should give the correct value
+            try {
+                const testDate = new HijriDate(year, month - 1, 1); // Month 0-based
+                return testDate.getDaysInMonth();
+            } catch (e) {
+                // Fallback calculation if library method fails
+                // This is a simplified version and may not be 100% accurate for all years
+                // In a 30-year cycle, years 2, 5, 7, 10, 13, 16, 18, 21, 24, 26, and 29 are leap years 
+                // (Dzulhijjah has 30 days instead of 29)
+                const isLeapYear = [2, 5, 7, 10, 13, 16, 18, 21, 24, 26, 29].includes(year % 30);
+                
+                if (month === 12 && isLeapYear) {
+                    return 30; // Dzulhijjah in a leap year
+                }
+                
+                // Alternating 29 and 30 days for other months
+                // Muharram (1) is 30, Shafar (2) is 29, Rabi'ul Awwal (3) is 30, etc.
+                return (month % 2 === 1) ? 30 : 29;
+            }
+        }
+
+        // Function to get information about special dates
+        function getSpecialDateInfo(month, day, year) {
+            // month is 1-based
+            
+            // Ayyamul Bidh (13, 14, 15 of every Hijri month)
+            if (day === 13 || day === 14 || day === 15) {
+                return {
+                    name: 'Ayyamul Bidh (Hari-Hari Putih)',
+                    description: 'Hari ke-13, 14, dan 15 dalam setiap bulan Hijriah. Puasa pada hari-hari ini sangat dianjurkan.',
+                    type: 'sunnah'
+                };
+            }
+            
+            // Ramadhan (Puasa Wajib)
+            if (month === 9) {
+                return {
+                    name: 'Bulan Ramadhan',
+                    description: 'Bulan suci Ramadhan, diwajibkan puasa bagi setiap muslim yang mampu.',
+                    type: 'wajib'
+                };
+            }
+            
+            // Idul Fitri (1 Syawal)
+            if (month === 10 && day === 1) {
+                return {
+                    name: 'Idul Fitri',
+                    description: 'Hari raya Idul Fitri, menandai berakhirnya bulan puasa Ramadhan.',
+                    type: 'wajib'
+                };
+            }
+            
+            // Hari Tasyrik (11, 12, 13 Dzulhijjah)
+            if (month === 12 && (day === 11 || day === 12 || day === 13)) {
+                return {
+                    name: 'Hari Tasyrik',
+                    description: 'Hari ke-11, 12, dan 13 Dzulhijjah. Diharamkan puasa pada hari-hari ini (kecuali bagi orang yang melakukan wukuf di Arafah).',
+                    type: 'larangan'
+                };
+            }
+            
+            // Idul Adha (10 Dzulhijjah)
+            if (month === 12 && day === 10) {
+                return {
+                    name: 'Idul Adha',
+                    description: 'Hari raya Idul Adha, hari raya kurban.',
+                    type: 'wajib'
+                };
+            }
+            
+            // Arafah (9 Dzulhijjah)
+            if (month === 12 && day === 9) {
+                return {
+                    name: 'Hari Arafah',
+                    description: 'Hari ke-9 Dzulhijjah. Puasa Arafah sangat dianjurkan bagi yang tidak melakukan wukuf di Arafah.',
+                    type: 'sunnah'
+                };
+            }
+            
+            // Tasu'a (9 Muharram)
+            if (month === 1 && day === 9) {
+                return {
+                    name: 'Hari Tasu\'a',
+                    description: 'Hari ke-9 Muharram. Puasa Tasu\'a dianjurkan.',
+                    type: 'sunnah'
+                };
+            }
+            
+            // Asyura (10 Muharram)
+            if (month === 1 && day === 10) {
+                return {
+                    name: 'Hari Asyura',
+                    description: 'Hari ke-10 Muharram. Puasa Asyura sangat dianjurkan.',
+                    type: 'sunnah'
+                };
+            }
+            
+            return null; // No special info
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize with today's date
+            const now = new Date();
+            currentHijriDate = new HijriDate(now);
+            displayHijriYear = currentHijriDate.getFullYear();
+            displayHijriMonth = currentHijriDate.getMonth() + 1; // Convert to 1-based for display
+            
+            // If the calendar page is active by default, render it
+            if (document.getElementById('kalender-page').classList.contains('active')) {
+                renderCalendar();
+            }
+        });
+    </script>
+</body>
+</html>
